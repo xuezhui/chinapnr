@@ -1,0 +1,28 @@
+{
+    "name": "fakeronline/chinapnr",
+    "description": "汇付天下SDK",
+    "keywords": [
+        "汇付天下",
+        "chinapnr",
+        "chinapnr-sdk",
+        "支付接口",
+        "P2P"
+    ],
+    "license": "MIT",
+    "require": {
+        "php":">=5.3",
+        "ext-mcrypt": "*"
+    },
+    "authors": [
+        {
+            "name": "fakeronline",
+            "email": "1077341744@qq.com"
+        }
+    ],
+    "minimum-stability" : "dev",
+    "autoload": {
+        "psr-4": {
+            "Fakeronline\\Chinapnr\\": "Chinapnr/src"
+        }
+    }
+}
