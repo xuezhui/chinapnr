@@ -21,7 +21,7 @@ abstract class Responses{
     protected $config;
     protected $errorMsg;
 
-    protected $sortAttr = [];
+    protected $sortAttribute = [];
     protected $value = [];
 
     public function __construct($key){
@@ -32,11 +32,16 @@ abstract class Responses{
 
         }
 
-        $this->config['key'] = $key;
+        $this->config['privateKey'] = $key;
 
 
     }
 
+    /**
+     * ÑéÖ¤Ç©Ãû
+     * @return bool
+     * @throws Exception
+     */
     public function chkValue(){
 
         if(empty($this->value)){
@@ -50,6 +55,14 @@ abstract class Responses{
         }
 
         return false;
+
+    }
+
+    public function params($args){
+
+        $this->value = $args;
+
+        return $this;
 
     }
 
