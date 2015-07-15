@@ -54,15 +54,7 @@ trait ServicesTrait{
 
     abstract public function params($args);
 
-    /**
-     * 获得属性数组
-     * @return array 属性数组
-     */
-    abstract protected function attribute();
-
     abstract protected function sortAttribute();
-
-    abstract protected function requiredAttr();
 
     public function __get($key){
 
