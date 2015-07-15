@@ -14,12 +14,20 @@
 namespace Fakeronline\Chinapnr;
 
 use Fakeronline\Chinapnr\Services\Requests;
-use Fakeronline\Chinapnr\Utils\Arr;
 use Exception;
 use Fakeronline\Chinapnr\Utils\Curl;
-use Fakeronline\Chinapnr\Utils\Form;
 
-class UserRegister extends  Requests{
+/**
+ * @method UsrId($UsrId)
+ * @method UsrName($UsrName)
+ * @method IdNo($IdNo)
+ * @method UsrMp($phoneNo)
+ * @method UsrEmail($email)
+ * @method MerPriv($merPriv)
+ * Class UserRegister
+ * @package Fakeronline\Chinapnr
+ */
+final class UserRegister extends  Requests{
 
     protected function attribute(){
 
@@ -42,28 +50,6 @@ class UserRegister extends  Requests{
         return [
             'Version', 'CmdId', 'MerCustId', 'BgRetUrl', 'ChkValue'
         ];
-
-    }
-
-
-    /**
-     * 排序算法
-     * @return array 排序后的数组
-     */
-    final protected function sortArgs(array $exampleArr, array $args){
-
-        $result = [];
-
-        foreach($exampleArr as $key){
-
-            $value = Arr::get($args, $key);
-
-            if(!is_null($value)){
-                $result[$key] = $value;
-            }
-
-        }
-        return $result;
 
     }
 
@@ -90,10 +76,8 @@ class UserRegister extends  Requests{
     public function request(){
 
         $this->value['ChkValue'] = $this->sign();
-dump($this->value);
         $curl = new Curl($this->config['url']);
-        $result =  $curl->setData($this->value)->get();
-dump($result);
+        echo  $curl->setData($this->value)->get();
     }
 
 
