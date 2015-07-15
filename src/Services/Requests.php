@@ -14,9 +14,10 @@
 namespace Fakeronline\Chinapnr\Services;
 use Exception;
 use Fakeronline\Chinapnr\Utils\Arr;
-use Fakeronline\Chinapnr\Tools\Encrypt;
 
 abstract class Requests{
+
+    use ServicesTrait;
 
     const VERSION_10 = '10';
 
@@ -126,52 +127,39 @@ abstract class Requests{
 
     }
 
-    /**
-     * 签名
-     * @return string
-     */
-    final protected function sign(){
+    public function params($args){
 
-        $result = $this->sortArgs($this->sortAttribute, $this->value);
-        $resultStr = implode('', $result);
+        foreach($args as $key => $value){
 
-        $encrypt = new Encrypt();
-        $resultStr = $encrypt->secureToolSha1_128($resultStr);
-        return $encrypt->secureToolRsaEncrypt($resultStr, $encrypt->buildKeyStr($this->config['privateKey']));
+            if(in_array($key, $this->attribute)){
+
+                if(in_array($key, $this->guarded)){
+                    throw new Exception("{$key}受保护，不允许设置!");
+                }
+
+                $this->value[$key] = $value;
+            }
+
+        }
+
+        return $this;
+
     }
+
+
+    public function request(){
+
+        $this->value['ChkValue'] = $this->sign();
+        $curl = new Curl($this->config['url']);
+        echo  $curl->setData($this->value)->get();
+    }
+
+    abstract protected function requiredAttr();
 
     /**
      * 获得属性数组
      * @return array 属性数组
      */
     abstract protected function attribute();
-
-    abstract protected function sortAttribute();
-
-    abstract protected function requiredAttr();
-
-    abstract public function params($args);
-
-    abstract public function request();
-
-    public function __get($key){
-
-        return Arr::get($this->value, $key);
-
-    }
-
-    public function __set($key, $value){
-
-        if(in_array($key, $this->attribute) && (!in_array($key, $this->guarded))){
-            $this->value[$key] = $value;
-        }
-
-    }
-
-    public function __call($method, $args){
-
-        $this->__set($method, $args);
-
-    }
 
 }
