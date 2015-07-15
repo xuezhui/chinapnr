@@ -14,7 +14,6 @@
 namespace Fakeronline\Chinapnr\Services;
 use Exception;
 use Fakeronline\Chinapnr\Utils\Arr;
-use Fakeronline\Chinapnr\Tools\Encrypt;
 
 abstract class Requests{
 
@@ -128,8 +127,14 @@ abstract class Requests{
 
     }
 
+    abstract protected function requiredAttr();
+
+    /**
+     * 获得属性数组
+     * @return array 属性数组
+     */
+    abstract protected function attribute();
+
     abstract public function request();
-
-
 
 }
