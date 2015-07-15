@@ -14,6 +14,8 @@
 namespace Fakeronline\Chinapnr\Responses;
 
 use Fakeronline\Chinapnr\Services\Responses;
+use Fakeronline\Chinapnr\Utils\Arr;
+
 
 class UserRegister extends Responses{
 
@@ -24,5 +26,31 @@ class UserRegister extends Responses{
         ];
 
     }
+
+    /**
+     * 获取银行卡号
+     * @return null
+     */
+    public function getCardNo(){
+
+        return Arr::get($this->value, 'OpenAcctId', '');
+    }
+
+//    public function getBank(){
+//
+//    }
+
+    public function getUserId(){
+
+        return Arr::get($this->value, 'UsrCustId', '');
+
+    }
+
+    public function getDesc(){
+
+        return Arr::get($this->value, 'RespDesc', '');
+
+    }
+
 
 }

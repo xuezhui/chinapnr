@@ -127,6 +127,33 @@ abstract class Requests{
 
     }
 
+    public function params($args){
+
+        foreach($args as $key => $value){
+
+            if(in_array($key, $this->attribute)){
+
+                if(in_array($key, $this->guarded)){
+                    throw new Exception("{$key}受保护，不允许设置!");
+                }
+
+                $this->value[$key] = $value;
+            }
+
+        }
+
+        return $this;
+
+    }
+
+
+    public function request(){
+
+        $this->value['ChkValue'] = $this->sign();
+        $curl = new Curl($this->config['url']);
+        echo  $curl->setData($this->value)->get();
+    }
+
     abstract protected function requiredAttr();
 
     /**
@@ -134,7 +161,5 @@ abstract class Requests{
      * @return array 属性数组
      */
     abstract protected function attribute();
-
-    abstract public function request();
 
 }
