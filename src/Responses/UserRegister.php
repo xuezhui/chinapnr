@@ -27,10 +27,6 @@ class UserRegister extends Responses{
 
     }
 
-    /**
-     * 获取银行卡号
-     * @return null
-     */
     public function getCardNo(){
 
         return Arr::get($this->value, 'OpenAcctId', '');

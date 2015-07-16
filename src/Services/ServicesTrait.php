@@ -17,10 +17,7 @@ use Fakeronline\Chinapnr\Tools\Encrypt;
 
 trait ServicesTrait{
 
-    /**
-     * 签名
-     * @return string
-     */
+
     final protected function sign(){
 
         $result = $this->sortArgs($this->sortAttribute, $this->value);
@@ -31,10 +28,6 @@ trait ServicesTrait{
         return $encrypt->secureToolRsaEncrypt($resultStr, $encrypt->buildKeyStr($this->config['privateKey']));
     }
 
-    /**
-     * 排序算法
-     * @return array 排序后的数组
-     */
     protected function sortArgs(array $exampleArr, array $args){
 
         $result = [];

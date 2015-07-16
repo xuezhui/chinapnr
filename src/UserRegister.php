@@ -14,8 +14,6 @@
 namespace Fakeronline\Chinapnr;
 
 use Fakeronline\Chinapnr\Services\Requests;
-use Exception;
-use Fakeronline\Chinapnr\Utils\Curl;
 
 /**
  * @method UsrId($UsrId)

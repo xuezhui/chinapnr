@@ -45,7 +45,7 @@ class UserBindCard extends Requests{
     public function setUrl($bgUrl){
 
         if(empty($bgUrl)){
-            throw new Exception('商户后台应答地址不能为空!');
+            throw new Exception('鏃犳晥鐨勯�氱煡鍦板潃!');
         }
 
         $this->value['BgRetUrl'] = $bgUrl;
