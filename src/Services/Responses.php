@@ -28,7 +28,7 @@ abstract class Responses{
 
         if(empty($key)){
 
-            throw new Exception('Ã»ÓÐKEY½«ÎÞ·¨½âÃÜ!');
+            throw new Exception('æ²¡æœ‰KEYå€¼æ— æ³•è¿›è¡Œè§£å¯†!');
 
         }
 
@@ -37,15 +37,11 @@ abstract class Responses{
 
     }
 
-    /**
-     * ÑéÖ¤Ç©Ãû
-     * @return bool
-     * @throws Exception
-     */
+
     public function chkValue(){
 
         if(empty($this->value)){
-            throw new Exception('Î´µÃµ½ÈÎºÎ²ÎÊýÖµ£¬ÎÞ·¨½øÐÐÐ£Ñé!');
+            throw new Exception('æ²¡æœ‰å€¼å¯ä»¥è¿›è¡ŒåŠ å¯†!');
         }
 
         $sign = $this->sign();
